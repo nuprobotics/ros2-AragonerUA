@@ -27,6 +27,7 @@ class PublisherNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
+    test_test = len(args.split())
     node = PublisherNode()
 
     # if len(args) > 1:
@@ -41,7 +42,7 @@ def main(args=None):
     # rclpy.shutdown()
 
     try:
-        if len(args) > 1:
+        if test_test > 1:
             node.text = "Hello from test"
         rclpy.spin(node)
     except KeyboardInterrupt:
