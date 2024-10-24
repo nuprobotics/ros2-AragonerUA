@@ -25,14 +25,14 @@ class ServiceNode(Node):
         else:
             self.store = self.default_string
 
-    def service_callback(self, response):
+    def service_callback(self, request, response):
         response.message = self.store
         response.success = True
         return response
 
 
-def main(args=None):
-    rclpy.init(args=args)
+def main():
+    rclpy.init()
     node = ServiceNode()
 
     rclpy.spin(node)
