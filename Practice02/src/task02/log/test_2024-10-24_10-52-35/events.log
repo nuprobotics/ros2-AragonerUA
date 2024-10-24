@@ -1,0 +1,5 @@
+[0.000000] (-) TimerEvent: {}
+[0.000664] (task02) JobQueued: {'identifier': 'task02', 'dependencies': OrderedDict([('task02', '/workspace/Practice02/src/Practice02/src/task02/install/task02')])}
+[0.000713] (task02) JobStarted: {'identifier': 'task02'}
+[0.005487] (task02) JobEnded: {'identifier': 'task02', 'rc': 1}
+[0.016439] (-) EventReactorShutdown: {}

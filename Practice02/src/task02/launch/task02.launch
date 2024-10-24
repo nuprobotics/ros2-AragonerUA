@@ -8,5 +8,6 @@
     >
         <param name="string" value="$(var string)" />
 <!--         <param from="$(find-pkg-share example)/config/example.yaml"/> -->
+        <param from="$(find-pkg-share task02)/config/task02.yaml" />
     </node>
 </launch>

@@ -4,15 +4,11 @@ from rclpy.node import Node
 from std_msgs.msg import String
 
 class PublisherNode(Node):
-    def __init__(self, key):
+    def __init__(self):
         super().__init__('publisher')
 
-        if key == 0:
-            self.declare_parameter('text', 'Hello, ROS2!')
-        elif key == 1:
-            self.declare_parameter('text', 'Hello from test')
         # Declare parameters
-        # self.declare_parameter('text', 'Hello, ROS2!')
+        self.declare_parameter('text', 'Hello, ROS2!')
         self.declare_parameter('topic_name', '/spgc/receiver')
 
         # Get parameters from the config or command line
@@ -33,31 +29,13 @@ class PublisherNode(Node):
 
 
 def main(args=None):
-    node = PublisherNode(0)
-    if args is not None:
-        node = PublisherNode(1)
     rclpy.init(args=args)
-    # node = PublisherNode()
+    node = PublisherNode()
 
-    # if len(args) > 1:
-    #     try:
-    #         node.text = args[1]
-    #         node.set_parameters([Parameter('text', value=node.text)])
-    #     except Exception as e:
-    #         node.get_logger().error(f'Error setting text parameter: {e}')
-    #
-    # rclpy.spin(node)
-    # node.destroy_node()
-    # rclpy.shutdown()
-
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        pass
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()
