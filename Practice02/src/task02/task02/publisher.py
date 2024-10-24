@@ -29,13 +29,24 @@ def main(args=None):
     rclpy.init(args=args)
     node = PublisherNode()
 
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        pass
-    finally:
-        node.destroy_node()
-        rclpy.shutdown()
+    if len(args) > 1:
+        try:
+            node.text = args[1]
+            node.set_parameters([Parameter('text', value=node.text)])
+        except Exception as e:
+            node.get_logger().error(f'Error setting text parameter: {e}')
+
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+    # try:
+    #     rclpy.spin(node)
+    # except KeyboardInterrupt:
+    #     pass
+    # finally:
+    #     node.destroy_node()
+    #     rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
