@@ -1,4 +1,5 @@
 import rclpy
+import sys
 from rclpy.node import Node
 from std_msgs.msg import String
 
@@ -27,8 +28,6 @@ class PublisherNode(Node):
 
 def main(args=None):
     node = PublisherNode()
-    if args is not None:
-        node.text = args[1]
     rclpy.init(args=args)
     # node = PublisherNode()
 
@@ -44,6 +43,8 @@ def main(args=None):
     # rclpy.shutdown()
 
     try:
+        if len(args) > 1:
+            node.text = args[1]
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
@@ -51,5 +52,6 @@ def main(args=None):
         node.destroy_node()
         rclpy.shutdown()
 
+
 if __name__ == '__main__':
-    main()
+    main(sys.argv)
