@@ -4,10 +4,15 @@ from rclpy.node import Node
 from std_msgs.msg import String
 
 class PublisherNode(Node):
-    def __init__(self):
+    def __init__(self, key):
         super().__init__('publisher')
+
+        if key == 0:
+            self.declare_parameter('text', 'Hello, ROS2!')
+        elif key == 1:
+            self.declare_parameter('text', 'Hello from test')
         # Declare parameters
-        self.declare_parameter('text', 'Hello, ROS2!')
+        # self.declare_parameter('text', 'Hello, ROS2!')
         self.declare_parameter('topic_name', '/spgc/receiver')
 
         # Get parameters from the config or command line
@@ -26,9 +31,11 @@ class PublisherNode(Node):
         self.publisher_.publish(msg)
         self.get_logger().info(f'Published message: "{msg.data}"')
 
+
 def main(args=None):
-    print(args)
-    node = PublisherNode()
+    node = PublisherNode(0)
+    if args is not None:
+        node = PublisherNode(1)
     rclpy.init(args=args)
     # node = PublisherNode()
 
