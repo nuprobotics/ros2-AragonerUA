@@ -26,8 +26,11 @@ class PublisherNode(Node):
         self.get_logger().info(f'Published message: "{msg.data}"')
 
 def main(args=None):
-    rclpy.init(args=args)
     node = PublisherNode()
+    if args is not None:
+        node.text = args[1]
+    rclpy.init(args=args)
+    # node = PublisherNode()
 
     # if len(args) > 1:
     #     try:
@@ -41,7 +44,6 @@ def main(args=None):
     # rclpy.shutdown()
 
     try:
-        node.text = "Hello from test"
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
