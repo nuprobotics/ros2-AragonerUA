@@ -41,8 +41,6 @@ def main(args=None):
     # rclpy.shutdown()
 
     try:
-        if len(args) > 1:
-            node.text = args[1]
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
