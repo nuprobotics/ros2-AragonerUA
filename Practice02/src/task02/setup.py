@@ -12,6 +12,7 @@ setup(
         # ('share/task01' + package_name, ['package.xml']),
         ('share/task02', ['package.xml']),
         ('share/task02/config', ['config/task02.yaml']),
+        ('share/task02' + '/launch', ['launch/task02.launch'])
     ],
     install_requires=['setuptools'],
     zip_safe=True,
