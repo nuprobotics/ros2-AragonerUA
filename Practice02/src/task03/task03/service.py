@@ -18,7 +18,7 @@ class ServiceNode(Node):
         self.store = ""
         self.service = self.create_service(Trigger, self.service_name, self.service_callback)
 
-        if self.client.wait_for_service():
+        if self.client.wait_for_service(timeout_sec=1.0):
             result = self.client.call_async(Trigger.Request())
             rclpy.spin_until_future_complete(self, result)
             self.store = result.result().message
